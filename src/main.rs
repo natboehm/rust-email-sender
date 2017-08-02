@@ -26,5 +26,5 @@ fn main() {
         .authentication_mechanism(Mechanism::CramMd5)
         .connection_reuse(true).build();
     println!("{:?}", transport.send(email.clone()));
-    transport.send(email);
+    transport.send(email)?;
 }
