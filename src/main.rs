@@ -11,8 +11,8 @@ fn main() {
     println!("Hello, world!");
 
     let email = EmailBuilder::new()
-        .to("person@person.person")
-        .from("sender@sender.sender")
+        .to("natboehm15@gmail.com")
+        .from("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org")
         .subject("hello friend")
         .body("greetings")
         .build()
