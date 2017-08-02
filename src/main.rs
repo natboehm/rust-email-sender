@@ -12,7 +12,7 @@ fn main() {
 
     let email = EmailBuilder::new()
         .to("natboehm15@gmail.com")
-        .from("nmb56@pitt.edu")
+        .from("postmaster@sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org")
         .subject("hello friend")
         .body("greetings")
         .build()
