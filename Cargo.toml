@@ -1,0 +1,7 @@
+[package]
+name = "confirm-email"
+version = "0.1.0"
+authors = ["Natalie Boehm <nmb56@pitt.edu>"]
+
+[dependencies]
+lettre = "0.6"
