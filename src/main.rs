@@ -34,5 +34,4 @@ fn main() {
     let result = transport.send(email);
     let result = result.expect("unable to send email");
     println!("result: {:?}", result);
-    transport.close();
 }
