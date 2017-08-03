@@ -28,4 +28,5 @@ fn main() {
         .connection_reuse(true).build();
     let result = transport.send(email);
     println!("result: {:?}", result);
+    transport.close();
 }
