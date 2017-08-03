@@ -31,7 +31,9 @@ fn main() {
         .smtp_utf8(true)
         .authentication_mechanism(Mechanism::CramMd5)
         .build();
+    println!("built, about to send");
     let result = transport.send(email);
+    println!("sent, about to expect");
     let result = result.expect("unable to send email");
     println!("result: {:?}", result);
 }
