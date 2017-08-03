@@ -1,1 +1,1 @@
-web: ./target/release/confirm-email
+worker: ./target/release/confirm-email
