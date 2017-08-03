@@ -1,7 +1,7 @@
 extern crate lettre;
 
 use std::env;
-use lettre::transport::smtp::{SecurityLevel, SmtpTransport, SmtpTransportBuilder};
+use lettre::transport::smtp::{SecurityLevel, SmtpTransportBuilder};
 use lettre::email::EmailBuilder;
 use lettre::transport::smtp::authentication::Mechanism;
 use lettre::transport::smtp::SUBMISSION_PORT;
