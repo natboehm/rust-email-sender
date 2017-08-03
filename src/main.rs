@@ -34,7 +34,7 @@ fn main() {
     let smtp = smtp.expect("error in setting to smtp_utf8");    
     let auth = smtp.authentication_mechanism(Mechanism::CramMd5);
     let auth = auth.expect("error in setting authentication mechanism");
-    let build = auth.build()
+    let build = auth.build();
     let build = build.expect("error in building");
     let result = transport.send(email);
     let result = result.expect("unable to send email");
