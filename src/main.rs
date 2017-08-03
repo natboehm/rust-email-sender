@@ -27,6 +27,7 @@ fn main() {
         .authentication_mechanism(Mechanism::CramMd5)
         .connection_reuse(true).build();
     let result = transport.send(email);
+    assert!(result.is_ok());
     println!("result: {:?}", result);
     transport.close();
 }
