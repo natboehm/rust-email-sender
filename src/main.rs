@@ -24,12 +24,18 @@ fn main() {
     //let mailgun_password = &env::var("MAILGUN_PASSWORD").unwrap_or("password".to_string())[..];
     println!("username: {:?} password: {:?}", mailgun_username, mailgun_password);
     let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", SUBMISSION_PORT)).expect("Failed to create new transport");
-        transport.hello_name("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org").expect("error in hello name");
-        transport.credentials(mailgun_username, mailgun_password).expect("error setting credentials");
-        transport.security_level(SecurityLevel::AlwaysEncrypt).expect("error in security level");
-        transport.smtp_utf8(true).expect("error in setting to smtp_utf8");
-        transport.authentication_mechanism(Mechanism::CramMd5).expect("error in setting authentication mechanism");
-        .build().expect("error in building");
+    let mut helo_name = transport.hello_name("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org");
+    let helo_name = helo_name.expect("error in hello name");
+    let cred = helo_name.credentials(mailgun_username, mailgun_password);
+    let cred = cred.expect("error setting credentials");
+    let security = cred.security_level(SecurityLevel::AlwaysEncrypt);
+    let security = security.expect("error in security level");
+    let smtp = security.smtp_utf8(true);
+    let smtp = smtp.expect("error in setting to smtp_utf8");    
+    let auth = smtp.authentication_mechanism(Mechanism::CramMd5);
+    let auth = auth.expect("error in setting authentication mechanism");
+    let build = auth.build()
+    let build = build.expect("error in building");
     let result = transport.send(email);
     let result = result.expect("unable to send email");
     println!("result: {:?}", result);
