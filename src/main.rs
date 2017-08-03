@@ -25,6 +25,6 @@ fn main() {
         .smtp_utf8(true)
         .authentication_mechanism(Mechanism::CramMd5)
         .connection_reuse(true).build();
-    println!("{:?}", transport.send(email.clone()));
-    transport.send(email);
+    let result = transport.send(email);
+    println!("result: {:?}", result);
 }
