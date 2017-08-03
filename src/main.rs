@@ -30,7 +30,7 @@ fn main() {
         .credentials(mailgun_username, mailgun_password)
         .security_level(SecurityLevel::AlwaysEncrypt)
         .smtp_utf8(true)
-        .authentication_mechanism(Mechanism::CramMd5)
+        .authentication_mechanism(Mechanism::Plain)
         .build();
     println!("built, about to send");
     let result = transport.send(email);
