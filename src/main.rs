@@ -1,5 +1,5 @@
 extern crate lettre;
-#[macro_use] extern crate log;
+extern crate log;
 extern crate env_logger;
 
 use log::Level;
