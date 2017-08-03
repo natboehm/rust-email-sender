@@ -25,7 +25,6 @@ fn main() {
     println!("username: {:?} password: {:?}", mailgun_username, mailgun_password);
     let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", SUBMISSION_PORT))
         .expect("Failed to create transport")
-        .hello_name("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org")
         .credentials(mailgun_username, mailgun_password)
         .security_level(SecurityLevel::AlwaysEncrypt)
         .smtp_utf8(true)
