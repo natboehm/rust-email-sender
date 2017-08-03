@@ -30,7 +30,7 @@ fn main() {
         .security_level(SecurityLevel::AlwaysEncrypt)
         .smtp_utf8(true)
         .authentication_mechanism(Mechanism::CramMd5)
-        .build()
+        .build();
     let result = transport.send(email);
     let result = result.expect("unable to send email");
     println!("result: {:?}", result);
