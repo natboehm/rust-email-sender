@@ -6,7 +6,6 @@ use lettre::email::EmailBuilder;
 use lettre::transport::smtp::authentication::Mechanism;
 use lettre::transport::smtp::SUBMISSION_PORT;
 use lettre::transport::EmailTransport;
-use lettre::transport::smtp::SMTP_PORT;
 
 fn main() {
     println!("Hello, world!");
@@ -19,8 +18,9 @@ fn main() {
         .build()
         .expect("Failed to build message");
 
-    let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", SMTP_PORT))
+    let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", SUBMISSION_PORT))
         .expect("Failed to create transport")
+        .hello_name("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org")
         .credentials(&env::var("MAILGUN_USERNAME").unwrap_or("username".to_string())[..], &env::var("MAILGUN_PASSWORD").unwrap_or("password".to_string())[..])
         .security_level(SecurityLevel::AlwaysEncrypt)
         .smtp_utf8(true)
