@@ -1,4 +1,8 @@
 extern crate lettre;
+#[macro_use] extern crate log;
+extern crate env_logger;
+
+use log::Level;
 
 use std::env;
 use lettre::transport::smtp::{SecurityLevel, SmtpTransportBuilder};
@@ -8,6 +12,7 @@ use lettre::transport::smtp::SUBMISSION_PORT;
 use lettre::transport::EmailTransport;
 
 fn main() {
+    env_logger::init();
     println!("Hello, world!");
 
     let email = EmailBuilder::new()
