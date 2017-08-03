@@ -18,7 +18,7 @@ fn main() {
         .build()
         .expect("Failed to build message");
 
-    let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", process.env.PORT))
+    let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", config.MAILGUN_SMTP_PORT))
         .expect("Failed to create transport")
         .credentials(&env::var("MAILGUN_USERNAME").unwrap_or("username".to_string())[..], &env::var("MAILGUN_PASSWORD").unwrap_or("password".to_string())[..])
         .security_level(SecurityLevel::AlwaysEncrypt)
