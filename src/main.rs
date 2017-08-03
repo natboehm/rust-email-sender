@@ -26,11 +26,17 @@ fn main() {
     let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", SUBMISSION_PORT))
         .expect("Failed to create transport")
         .hello_name("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org")
+        .expect("failed to set hello name")
         .credentials(mailgun_username, mailgun_password)
+        .expect("failed to set credentials")
         .security_level(SecurityLevel::AlwaysEncrypt)
+        .expect("failed to set security level")
         .smtp_utf8(true)
+        .expect("failed to set utf8")
         .authentication_mechanism(Mechanism::CramMd5)
-        .build();
+        .expect("failed to set auth mechanism")
+        .build()
+        .expect("failed to build");
     let result = transport.send(email);
     let result = result.expect("unable to send email");
     println!("result: {:?}", result);
