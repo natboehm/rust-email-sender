@@ -23,7 +23,7 @@ fn main() {
     //let mailgun_username = &env::var("MAILGUN_USERNAME").unwrap_or("username".to_string())[..];
     //let mailgun_password = &env::var("MAILGUN_PASSWORD").unwrap_or("password".to_string())[..];
     println!("username: {:?} password: {:?}", mailgun_username, mailgun_password);
-    let mut transport = SmtpTransportBuilder::new(("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org", SUBMISSION_PORT))
+    let mut transport = SmtpTransportBuilder::new(("smtp.mailgun.org", SUBMISSION_PORT))
         .expect("Failed to create transport")
         .hello_name("sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org")
         .credentials(mailgun_username, mailgun_password)
