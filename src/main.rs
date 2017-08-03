@@ -6,7 +6,7 @@ use lettre::email::EmailBuilder;
 use lettre::transport::smtp::authentication::Mechanism;
 use lettre::transport::smtp::SUBMISSION_PORT;
 use lettre::transport::EmailTransport;
-use lettre::transport::smtp::SMTP_PORT
+use lettre::transport::smtp::SMTP_PORT;
 
 fn main() {
     println!("Hello, world!");
