@@ -28,6 +28,7 @@ fn main() {
     let mut transport = SmtpTransportBuilder::new(("smtp.mailgun.org", SUBMISSION_PORT))
         .expect("Failed to create transport")
         .credentials(mailgun_username, mailgun_password)
+        .security_level(SecurityLevel::AlwaysEncrypt)
         .smtp_utf8(true)
         .authentication_mechanism(Mechanism::Plain)
         .build();
