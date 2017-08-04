@@ -32,6 +32,6 @@ fn main() {
         .smtp_utf8(true)
         .authentication_mechanism(Mechanism::Plain)
         .build();
-    let result = transport.send(email);
-    let result = result.expect("unable to send email");
+
+    transport.send(email);
 }
