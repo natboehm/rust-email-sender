@@ -1,7 +1,9 @@
-extern crate env_logger;
 extern crate lettre;
+extern crate dotenv;
 
+use dotenv::dotenv;
 use std::env;
+
 use lettre::transport::smtp::{SecurityLevel, SmtpTransportBuilder};
 use lettre::email::EmailBuilder;
 use lettre::transport::smtp::authentication::Mechanism;
@@ -9,23 +11,26 @@ use lettre::transport::smtp::SUBMISSION_PORT;
 use lettre::transport::EmailTransport;
 
 fn main() {
-    env_logger::init().expect("env logger can't init");
     println!("Hello, world!");
+    dotenv().ok();
+
+    let mailgun_username = env::var("MAILGUN_SMTP_LOGIN").unwrap();
+    let mailgun_password = env::var("MAILGUN_SMTP_PASSWORD").unwrap();
+    let mailgun_server = env::var("MAILGUN_SMTP_SERVER").unwrap();
+    println!("username: {:?} password: {:?} server: {:?}", mailgun_username, mailgun_password, mailgun_server);
+    
+    //let mailgun_username = &env::var("MAILGUN_USERNAME").unwrap_or("username".to_string())[..];
+    //let mailgun_password = &env::var("MAILGUN_PASSWORD").unwrap_or("password".to_string())[..];
 
     let email = EmailBuilder::new()
         .to("natboehm15@gmail.com")
-        .from("postmaster@sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org")
+        .from(mailgun_username)
         .subject("hello friend")
         .body("greetings")
         .build()
         .expect("Failed to build message");
 
-    let mailgun_username = "postmaster@sandboxc2cd6ddb46a044bc8980ce9d77f67c6a.mailgun.org";
-    let mailgun_password = "5c87f977632540b7f8bab87af6c5ba0f";
-    //let mailgun_username = &env::var("MAILGUN_USERNAME").unwrap_or("username".to_string())[..];
-    //let mailgun_password = &env::var("MAILGUN_PASSWORD").unwrap_or("password".to_string())[..];
-    println!("username: {:?} password: {:?}", mailgun_username, mailgun_password);
-    let mut transport = SmtpTransportBuilder::new(("smtp.mailgun.org", SUBMISSION_PORT))
+    let mut transport = SmtpTransportBuilder::new((mailgun_server, SUBMISSION_PORT))
         .expect("Failed to create transport")
         .credentials(mailgun_username, mailgun_password)
         .security_level(SecurityLevel::AlwaysEncrypt)

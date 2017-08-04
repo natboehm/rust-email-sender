@@ -5,4 +5,4 @@ authors = ["Natalie Boehm <nmb56@pitt.edu>"]
 
 [dependencies]
 lettre = "0.6"
-env_logger= "*"
+dotenv = "0.10.1"
