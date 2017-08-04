@@ -24,15 +24,15 @@ fn main() {
 
     let email = EmailBuilder::new()
         .to("natboehm15@gmail.com")
-        .from(mailgun_username)
+        .from(mailgun_username.as_str())
         .subject("hello friend")
         .body("greetings")
         .build()
         .expect("Failed to build message");
 
-    let mut transport = SmtpTransportBuilder::new((mailgun_server, SUBMISSION_PORT))
+    let mut transport = SmtpTransportBuilder::new((mailgun_server.as_str(), SUBMISSION_PORT))
         .expect("Failed to create transport")
-        .credentials(mailgun_username, mailgun_password)
+        .credentials(&mailgun_username, &mailgun_password)
         .security_level(SecurityLevel::AlwaysEncrypt)
         .smtp_utf8(true)
         .authentication_mechanism(Mechanism::Plain)
