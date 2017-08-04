@@ -18,7 +18,7 @@ fn main() {
     let mailgun_server = env::var("MAILGUN_SMTP_SERVER").unwrap();
 
     let email = EmailBuilder::new()
-        .to("natboehm15@gmail.com")
+        .to("something@example.com")
         .from(mailgun_username.as_str())
         .subject("hello friend")
         .body("greetings")
